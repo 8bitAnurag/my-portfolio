@@ -9,17 +9,47 @@ interface HeroSectionProps {
 export function HeroSection({ onOpenCommandPalette }: HeroSectionProps) {
   const [avatarIndex, setAvatarIndex] = useState(0);
   const [roleIndex, setRoleIndex] = useState(0);
-  const [views, setViews] = useState(PROFILE.baseViewCount);
+  const [views, setViews] = useState<number | null>(null);
 
   useEffect(() => {
-    try {
-      const stored = Number(localStorage.getItem('portfolio-views') || '0');
-      const next = stored > 0 ? stored + 1 : PROFILE.baseViewCount + 1;
-      localStorage.setItem('portfolio-views', String(next));
-      setViews(next);
-    } catch {
-      setViews(PROFILE.baseViewCount);
-    }
+    let cancelled = false;
+
+    const fallbackLocalViews = () => {
+      try {
+        const stored = Number(localStorage.getItem('portfolio-views') || '0');
+        const next = stored > 0 ? stored + 1 : PROFILE.baseViewCount + 1;
+        localStorage.setItem('portfolio-views', String(next));
+        if (!cancelled) setViews(next);
+      } catch {
+        if (!cancelled) setViews(PROFILE.baseViewCount);
+      }
+    };
+
+    const syncGlobalViews = async () => {
+      try {
+        const alreadyViewed = sessionStorage.getItem('portfolio-viewed') === '1';
+        const res = await fetch('/api/views', {
+          method: alreadyViewed ? 'GET' : 'POST',
+        });
+        if (!res.ok) throw new Error('API unavailable');
+        const data = await res.json();
+        if (data?.live && typeof data.views === 'number') {
+          if (!alreadyViewed) {
+            sessionStorage.setItem('portfolio-viewed', '1');
+          }
+          if (!cancelled) setViews(data.views);
+          return;
+        }
+        fallbackLocalViews();
+      } catch {
+        fallbackLocalViews();
+      }
+    };
+
+    syncGlobalViews();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
@@ -90,7 +120,7 @@ export function HeroSection({ onOpenCommandPalette }: HeroSectionProps) {
               <span>·</span>
               <span className="inline-flex items-center gap-1">
                 <Eye className="h-3 w-3" />
-                {views.toLocaleString()} views
+                {views !== null ? `${views.toLocaleString()} views` : '... views'}
               </span>
             </div>
           </div>
