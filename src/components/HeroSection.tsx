@@ -105,14 +105,14 @@ export function HeroSection({ onOpenCommandPalette }: HeroSectionProps) {
           </div>
 
           <div>
-            <h1 className="font-serif-display text-[32px] leading-none tracking-tight text-[var(--fg)] sm:text-[36px]">
+            <h1 className="font-serif-display text-glitch text-3xl leading-none tracking-tight text-[var(--fg)] sm:text-[38px]">
               {PROFILE.fullName}
             </h1>
             <p className="font-mono-tech mt-1.5 flex items-center text-[13px] text-[var(--muted)]">
               <span>{PROFILE.roles[roleIndex]}</span>
               <span className="animate-caret ml-1 inline-block h-3.5 w-[1.5px] bg-[var(--muted)]" />
             </p>
-            <div className="font-mono-tech mt-1.5 flex flex-wrap items-center gap-2 text-[11.5px] text-[var(--soft)]">
+            <div className="font-mono-tech mt-1.5 flex flex-wrap items-center gap-2 text-[11px] text-[var(--soft)]">
               <span className="inline-flex items-center gap-1">
                 <MapPin className="h-3 w-3" />
                 {PROFILE.location}
@@ -129,7 +129,7 @@ export function HeroSection({ onOpenCommandPalette }: HeroSectionProps) {
         <button
           type="button"
           onClick={onOpenCommandPalette}
-          className="font-mono-tech inline-flex cursor-pointer items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--card)] px-3 py-1.5 text-xs text-[var(--muted)] transition-colors hover:bg-[var(--hover)] hover:text-[var(--fg)]"
+          className="font-mono-tech inline-flex cursor-pointer items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--chip)] px-3 py-1.5 text-[11px] text-[var(--muted)] shadow-sm transition-colors hover:border-[var(--soft)] hover:text-[var(--fg)]"
         >
           <Search className="h-3.5 w-3.5" />
           <span>⌘K</span>

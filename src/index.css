@@ -1,12 +1,102 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ */
+/*  Amiamie Custom Typography (from original repo)                    */
+/* ------------------------------------------------------------------ */
+@font-face {
+  font-family: "Amiamie";
+  src: url("/fonts/amiamie/otf/Amiamie-Regular.otf") format("opentype"),
+    url("/fonts/amiamie/ttf/Amiamie-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie";
+  src: url("/fonts/amiamie/otf/Amiamie-Italic.otf") format("opentype"),
+    url("/fonts/amiamie/ttf/Amiamie-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie";
+  src: url("/fonts/amiamie/otf/Amiamie-Light.otf") format("opentype"),
+    url("/fonts/amiamie/ttf/Amiamie-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie";
+  src: url("/fonts/amiamie/otf/Amiamie-LightItalic.otf") format("opentype"),
+    url("/fonts/amiamie/ttf/Amiamie-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie";
+  src: url("/fonts/amiamie/otf/Amiamie-Black.otf") format("opentype"),
+    url("/fonts/amiamie/ttf/Amiamie-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie";
+  src: url("/fonts/amiamie/otf/Amiamie-BlackItalic.otf") format("opentype"),
+    url("/fonts/amiamie/ttf/Amiamie-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie-Round";
+  src: url("/fonts/amiamie/otf/Amiamie-RegularRound.otf") format("opentype"),
+    url("/fonts/amiamie/ttf/Amiamie-RegularRound.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie-Round";
+  src: url("/fonts/amiamie/otf/Amiamie-BlackRound.otf") format("opentype"),
+    url("/fonts/amiamie/ttf/Amiamie-BlackRound.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie-Round";
+  src: url("/fonts/amiamie/otf/Amiamie-BlackItalicRound.otf") format("opentype"),
+    url("/fonts/amiamie/ttf/Amiamie-BlackItalicRound.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Amiamie", "Inter", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
 :root,
 html.dark {
   --bg: #0a0a0a;
   --fg: #f5f5f4;
   --muted: #a1a1aa;
   --soft: #63636b;
-  --line: rgba(255, 255, 255, 0.1);
+  --line: rgba(255, 255, 255, 0.10);
   --stripe: rgba(255, 255, 255, 0.055);
   --hover: rgba(255, 255, 255, 0.05);
   --card: #101010;
@@ -16,6 +106,10 @@ html.dark {
   --heat-2: #5a5a63;
   --heat-3: #9e9ea8;
   --heat-4: #f5f5f4;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-sans: "Amiamie", "Inter", system-ui, sans-serif;
+  --font-amiamie-round: "Amiamie-Round", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
   color-scheme: dark;
 }
 
@@ -24,7 +118,7 @@ html.light {
   --fg: #18181b;
   --muted: #52525b;
   --soft: #a1a1aa;
-  --line: rgba(0, 0, 0, 0.1);
+  --line: rgba(0, 0, 0, 0.10);
   --stripe: rgba(0, 0, 0, 0.055);
   --hover: rgba(0, 0, 0, 0.04);
   --card: #ffffff;
@@ -35,12 +129,6 @@ html.light {
   --heat-3: #52525b;
   --heat-4: #18181b;
   color-scheme: light;
-}
-
-:root {
-  --font-serif: "Instrument Serif", Georgia, serif;
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
 @layer base {
@@ -74,6 +162,11 @@ html.light {
 
 .font-mono-tech {
   font-family: var(--font-mono);
+}
+
+/* RGB Chromatic Aberration Text Shadow (from original repo) */
+.text-glitch {
+  text-shadow: -1.5px 0 0 rgba(0, 200, 255, 0.6), 1.5px 0 0 rgba(255, 80, 0, 0.6);
 }
 
 /* Signature diagonal hatch pattern for full-bleed gutter bands */

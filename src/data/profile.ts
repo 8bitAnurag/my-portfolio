@@ -139,15 +139,15 @@ export const PROFILE: ProfileConfig = {
 
   aboutBullets: [
     "Hey, I'm Anurag — a Computer Science student at Technische Universität Darmstadt focused on backend engineering, event-driven microservices, and low-latency systems.",
-    'I enjoy building reliable software from the ground up: Spring Boot & Apache Kafka pipelines, Retrieval-Augmented Generation (RAG) backends, and lock-free C++17 architectures.',
+    "I spend most of my time in the terminal, reading docs, or sketching architectures on a whiteboard. I lean backend and systems—not because I don't like frontend, but because I enjoy making polished products actually hold up under the hood.",
     'Currently seeking Working Student (Werkstudent) or Software Engineering Internship opportunities where I can ship clean, scalable production code.',
   ],
 
   snapshot: [
     'B.Sc. CS @ TU Darmstadt.',
-    'Java, Spring Boot & Kafka.',
+    'Java & Spring Boot Backend.',
     'C++17 Low-Latency Systems.',
-    'English C2 · German B2.',
+    'Obsessed with clean code.',
   ],
 
   spokenLanguages: [

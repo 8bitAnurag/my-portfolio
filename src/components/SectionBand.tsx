@@ -41,7 +41,7 @@ export function SectionBand({ id, title, rightSlot, eyebrow }: SectionBandProps)
               {eyebrow}
             </div>
           )}
-          <h2 className="font-serif-display text-[28px] leading-none tracking-tight text-[var(--fg)]">
+          <h2 className="font-serif-display text-2xl tracking-wide text-[var(--fg)]">
             {title}
           </h2>
         </div>

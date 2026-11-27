@@ -22,6 +22,7 @@ const SKILL_TABS: { label: SkillFilter; icon: 'all' | 'lang' | 'fw' | 'db' | 'op
 ];
 
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const HEAT_OPACITY = [0.07, 0.25, 0.45, 0.7, 1];
 
 function renderTabIcon(icon: (typeof SKILL_TABS)[number]['icon']) {
   if (icon === 'all') return <Sparkles className="h-3 w-3" />;
@@ -106,11 +107,11 @@ export function TechStackWritingActivity({
               })}
             </div>
 
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-wrap gap-2.5">
               {visibleSkills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--card)] px-3 py-1.5 text-[13px] text-[var(--fg)] transition-colors hover:border-[var(--soft)] hover:bg-[var(--hover)]"
+                  className="font-mono-tech inline-flex cursor-default items-center gap-2 rounded-md border border-[var(--line)] bg-[var(--card)] px-3 py-1.5 text-[12px] text-[var(--muted)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--fg)] hover:bg-[var(--fg)] hover:text-[var(--bg)]"
                 >
                   <span
                     className="font-mono-tech flex h-5 min-w-5 items-center justify-center rounded px-1 text-[10px] font-semibold"
@@ -251,9 +252,9 @@ export function TechStackWritingActivity({
                             ? `${cell.count} contribution${cell.count === 1 ? '' : 's'} on ${cell.date}`
                             : `${cell.count} contributions`
                         }
-                        className="h-[10px] w-[10px] rounded-[2px] transition-transform hover:scale-125"
+                        className="h-[10px] w-[10px] rounded-[2px] bg-[var(--fg)] transition-transform duration-150 hover:scale-125"
                         style={{
-                          backgroundColor: `var(--heat-${cell.level})`,
+                          opacity: HEAT_OPACITY[cell.level],
                         }}
                       />
                     )
@@ -266,13 +267,13 @@ export function TechStackWritingActivity({
                       ? `${heatmap.total.toLocaleString()} contributions in the last year`
                       : `${PROFILE.githubContributionsTotal.toLocaleString()}+ contributions in the last year`}
                   </span>
-                  <div className="flex items-center gap-1.5 text-[10.5px] text-[var(--soft)]">
+                  <div className="flex items-center gap-1.5 text-[10.5px] text-[var(--muted)]">
                     <span>Less</span>
-                    {[0, 1, 2, 3, 4].map((lvl) => (
+                    {HEAT_OPACITY.map((opacity, lvl) => (
                       <span
                         key={lvl}
-                        className="inline-block h-[10px] w-[10px] rounded-[2px]"
-                        style={{ backgroundColor: `var(--heat-${lvl})` }}
+                        className="inline-block h-[10px] w-[10px] rounded-[2px] bg-[var(--fg)]"
+                        style={{ opacity }}
                       />
                     ))}
                     <span>More</span>
